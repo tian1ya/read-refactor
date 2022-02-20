@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+/.idea/
+# Datasource local storage ignored files
+/../../../../:\back-end\reread-refactor\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+./target/
+./reread-refactor.iml/
