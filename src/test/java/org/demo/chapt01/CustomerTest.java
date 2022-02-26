@@ -27,6 +27,8 @@ public class CustomerTest extends TestCase {
         customer.addRental(rental3);
 
         System.out.println(customer.statement());
+        System.out.println("\n\n");
+        System.out.println(customer.htmlStatement());
     }
 
 

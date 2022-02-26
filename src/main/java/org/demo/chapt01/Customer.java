@@ -20,8 +20,6 @@ public class Customer {
     }
 
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoint = 0;
         Enumeration rentals = this._rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
@@ -31,6 +29,19 @@ public class Customer {
 
         result += "Amount owed is " + getTotalAmount() + "\n";
         result += "You earned " + getTotalRenterPointers() + " frequent renter points";
+        return result;
+    }
+
+    public String htmlStatement() {
+        Enumeration rentals = this._rentals.elements();
+        String result = "<H1>Rental Record for <EM>" + getName() + "</EM></H1><P>\n";
+        while (rentals.hasMoreElements()) {
+            Rental each = (Rental) rentals.nextElement();
+            result += each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
+        }
+
+        result += "<P>You owned <EM>Amount owed is " + getTotalAmount() + "</EM><P>\n";
+        result += "On this you earned <EM>" + getTotalRenterPointers() + "</EM> frequent renter points<P>";
         return result;
     }
 
