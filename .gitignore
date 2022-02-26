@@ -8,4 +8,5 @@
 /httpRequests/
 
 ./target/
+./target
 ./reread-refactor.iml/
