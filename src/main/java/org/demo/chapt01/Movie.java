@@ -6,11 +6,11 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
 
     public String _title;
-    public Integer _priceCode;
+    public Price price;
 
-    public Movie(String _title, Integer _priceCode) {
+    public Movie(String _title, Integer price) {
         this._title = _title;
-        this._priceCode = _priceCode;
+        setPriceCode(price);
     }
 
     public String getTitle() {
@@ -22,39 +22,23 @@ public class Movie {
     }
 
     public Integer getPriceCode() {
-        return _priceCode;
+        return price.getPriceCode();
     }
 
     public void setPriceCode(Integer _priceCode) {
-        this._priceCode = _priceCode;
-    }
-
-    double getCharge(int daysRecord) {
-        double thisAmount = 0;
-        switch (getPriceCode()) {
+        switch (_priceCode) {
+            case CHILDLESS:
+                price = new ChildrenPrice();
+                break;
             case REGULAR:
-                thisAmount += 2;
-                if (daysRecord > 2) {
-                    thisAmount += (daysRecord - 2) * 1.5;
-                }
+                price = new RegularPrice();
                 break;
             case NEW_RELEASE:
-                thisAmount += daysRecord * 3;
+                price = new NewReleasePrice();
                 break;
-            case CHILDLESS:
-                thisAmount += 1.5;
-                if (daysRecord > 3) {
-                    thisAmount += (daysRecord - 3) * 1.5;
-                }
-                break;
+            default:
+                throw new IllegalArgumentException("Incorrect Price Code");
         }
-        return thisAmount;
     }
 
-    int getFrequentRenterPoints(int daysRecord) {
-        if (getPriceCode() == NEW_RELEASE && daysRecord > 1) {
-            return 2;
-        }
-        return 1;
-    }
 }
