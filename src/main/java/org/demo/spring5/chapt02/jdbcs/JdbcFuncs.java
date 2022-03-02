@@ -1,6 +1,4 @@
-package org.demo.spring5.chapt02;
-
-import java.sql.*;
+package org.demo.spring5.chapt02.jdbcs;
 
 public class JdbcFuncs {
     public void update(Student student) {

@@ -1,4 +1,4 @@
-package org.demo.spring5.chapt02;
+package org.demo.spring5.chapt02.jdbcs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
