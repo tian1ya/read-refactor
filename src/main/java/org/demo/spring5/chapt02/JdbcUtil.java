@@ -1,24 +1,30 @@
 package org.demo.spring5.chapt02;
 
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 public class JdbcUtil {
     private JdbcUtil() {
     }
 
-    ;
+    private static Properties properties;
 
     static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            InputStream inputStream = loader.getResourceAsStream("db.properties");
+            properties = new Properties();
+            properties.load(inputStream);
+            Class.forName(properties.getProperty("driverClassName"));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection("");
+            return DriverManager.getConnection(properties.getProperty("url"), properties.getProperty("username"), properties.getProperty("password"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -47,6 +53,6 @@ public class JdbcUtil {
                     }
                 }
             }
+        }
     }
-}
 }
