@@ -8,8 +8,7 @@ public class JdbcFuncs {
         Connection conn = null;
         Statement st = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("");
+            conn = JdbcUtil.getConnection();
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setObject(1, student.id);
@@ -19,19 +18,7 @@ public class JdbcFuncs {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (st != null)
-                    st.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } finally {
-                try {
-                    if (conn != null)
-                        conn.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
+            JdbcUtil.close(null, st, conn);
         }
     }
     public void delete(Integer id) {
@@ -39,8 +26,7 @@ public class JdbcFuncs {
         Connection conn = null;
         Statement st = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("");
+            conn = JdbcUtil.getConnection();
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setObject(1, id);
@@ -48,19 +34,7 @@ public class JdbcFuncs {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (st != null)
-                    st.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } finally {
-                try {
-                    if (conn != null)
-                        conn.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
+            JdbcUtil.close(null, st, conn);
         }
     }
 
@@ -69,8 +43,7 @@ public class JdbcFuncs {
         Connection conn = null;
         Statement st = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("");
+            conn = JdbcUtil.getConnection();
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setObject(1, student.age);
@@ -79,19 +52,7 @@ public class JdbcFuncs {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (st != null)
-                    st.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            } finally {
-                try {
-                    if (conn != null)
-                        conn.close();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
+            JdbcUtil.close(null, st, conn);
         }
     }
 }
